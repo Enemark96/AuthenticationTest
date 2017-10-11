@@ -35,8 +35,8 @@ namespace AuthenticationTest
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = "Authentication:Facebook:AppId";
-                facebookOptions.AppSecret = "Authentication:Facebook:AppSecret";
+                facebookOptions.AppId = "1484881911569251"; // "Authentication:Facebook:AppId";
+                facebookOptions.AppSecret = "ed166825f200e16aac41b20a5ec3a85e"; // "Authentication:Facebook:AppSecret";
             });
 
             services.AddMvc()
