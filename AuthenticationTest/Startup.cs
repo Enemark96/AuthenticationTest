@@ -19,7 +19,6 @@ namespace AuthenticationTest
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -35,10 +34,10 @@ namespace AuthenticationTest
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication().AddFacebook();
-            //    (facebookOptions =>
+                //(facebookOptions =>
             //{
-            //    facebookOptions.AppId = "1484881911569251"; 
-            //    facebookOptions.AppSecret = "ed166825f200e16aac41b20a5ec3a85e"; 
+            //    facebookOptions.AppId = "1484881911569251"; // "Authentication:Facebook:AppId";
+            //    facebookOptions.AppSecret = "" // "Authentication:Facebook:AppSecret";
             //});
 
             services.AddMvc()
