@@ -110,8 +110,8 @@ namespace AuthenticationTest.Pages.Account
                 }
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
-                //if (result.Succeeded)
-                //{
+                if (result.Succeeded)
+                {
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
@@ -119,7 +119,7 @@ namespace AuthenticationTest.Pages.Account
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return LocalRedirect(Url.GetLocalUrl(returnUrl));
                     }
-               // }
+                }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
