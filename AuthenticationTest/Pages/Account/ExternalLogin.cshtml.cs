@@ -72,13 +72,13 @@ namespace AuthenticationTest.Pages.Account
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : false);
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
                 return LocalRedirect(Url.GetLocalUrl(returnUrl));
             }
-            else if (result.IsLockedOut)
+            if (result.IsLockedOut)
             {
                 return RedirectToPage("./Lockout");
             }
@@ -110,8 +110,8 @@ namespace AuthenticationTest.Pages.Account
                 }
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
+                //if (result.Succeeded)
+                //{
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
@@ -119,7 +119,7 @@ namespace AuthenticationTest.Pages.Account
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
                         return LocalRedirect(Url.GetLocalUrl(returnUrl));
                     }
-                }
+               // }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
