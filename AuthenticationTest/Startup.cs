@@ -34,11 +34,12 @@ namespace AuthenticationTest
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = "1484881911569251"; 
-                facebookOptions.AppSecret = "ed166825f200e16aac41b20a5ec3a85e"; 
-            });
+            services.AddAuthentication().AddFacebook();
+            //    (facebookOptions =>
+            //{
+            //    facebookOptions.AppId = "1484881911569251"; 
+            //    facebookOptions.AppSecret = "ed166825f200e16aac41b20a5ec3a85e"; 
+            //});
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
